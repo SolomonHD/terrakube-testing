@@ -13,8 +13,8 @@ resource "aws_s3_bucket" "example" {
   }
 }
 
-module "lambda2" {
-  source  = "tk-registry.sghd.io/aws/lambda2/aws"
-  version = "v7.2.3"
-  # insert required variables here 
-}
+# module "lambda2" {
+#   source  = "tk-registry.sghd.io/aws/lambda2/aws"
+#   version = "v7.2.3"
+#   # insert required variables here 
+# }
