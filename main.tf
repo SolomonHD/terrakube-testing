@@ -18,3 +18,7 @@ resource "aws_s3_bucket" "example" {
 #   version = "v7.2.3"
 #   # insert required variables here 
 # }
+
+output "aws_s3_bucket_domain_name" {
+  value = aws_s3_bucket.example.bucket_domain_name
+}
