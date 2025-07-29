@@ -1,8 +1,8 @@
 # Site settings
 title: "My GHES Jekyll Test Site"
 description: "Testing Jekyll deployment on GitHub Enterprise Server"
-baseurl: "/your-repo-name"  # Replace with your actual repo name
-url: "https://your-ghes-instance.com"  # Replace with your GHES URL
+  #baseurl: "/your-repo-name"  # Replace with your actual repo name
+  #url: "https://your-ghes-instance.com"  # Replace with your GHES URL
 
 # Build settings
 markdown: kramdown
