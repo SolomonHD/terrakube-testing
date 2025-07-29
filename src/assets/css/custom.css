@@ -1,0 +1,216 @@
+/* Command Block Styles */
+.command-block {
+  margin: 1.5rem 0;
+  border: 1px solid var(--border-color-01, #e1e4e8);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.command-header {
+  background-color: var(--color-canvas-subtle, #f6f8fa);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color-01, #e1e4e8);
+  font-weight: 600;
+}
+
+.command-title {
+  color: var(--color-fg-default, #24292f);
+}
+
+.command-content {
+  background-color: var(--color-canvas-default, #ffffff);
+}
+
+/* Code Container */
+.code-container {
+  position: relative;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-canvas-subtle, #f6f8fa);
+  border-bottom: 1px solid var(--border-color-01, #e1e4e8);
+  font-size: 0.875rem;
+}
+
+.code-lang {
+  color: var(--color-fg-muted, #656d76);
+  font-weight: 500;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: transparent;
+  border: 1px solid var(--border-color-01, #e1e4e8);
+  border-radius: 4px;
+  color: var(--color-fg-default, #24292f);
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background-color: var(--color-neutral-muted, #f3f4f6);
+  border-color: var(--border-color-02, #d0d7de);
+}
+
+.copy-btn.copied {
+  background-color: var(--color-success-emphasis, #1f883d);
+  border-color: var(--color-success-emphasis, #1f883d);
+  color: white;
+}
+
+.copy-btn svg {
+  flex-shrink: 0;
+}
+
+/* Code Block Override */
+.command-block pre {
+  margin: 0;
+  padding: 1rem;
+  background-color: var(--color-canvas-default, #ffffff);
+  border: none;
+  border-radius: 0;
+  overflow-x: auto;
+}
+
+.command-block code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Command Description */
+.command-description {
+  padding: 1rem;
+  background-color: var(--color-accent-subtle, #ddf4ff);
+  border-top: 1px solid var(--border-color-01, #e1e4e8);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.command-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* Expandable Command Styles */
+.expandable-command {
+  border: 1px solid var(--border-color-01, #e1e4e8);
+  border-radius: 6px;
+  margin: 1.5rem 0;
+}
+
+.expandable-command[open] {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.command-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-canvas-subtle, #f6f8fa);
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.expandable-command[open] .command-summary {
+  border-bottom: 1px solid var(--border-color-01, #e1e4e8);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.command-summary:hover {
+  background-color: var(--color-neutral-muted, #f3f4f6);
+}
+
+.command-summary::-webkit-details-marker {
+  display: none;
+}
+
+.expand-icon {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+  color: var(--color-fg-muted, #656d76);
+}
+
+.expandable-command[open] .expand-icon {
+  transform: rotate(90deg);
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .command-block {
+    border-color: var(--color-border-default, #30363d);
+  }
+  
+  .command-header,
+  .code-header,
+  .command-summary {
+    background-color: var(--color-canvas-subtle, #21262d);
+    border-color: var(--color-border-default, #30363d);
+  }
+  
+  .command-content,
+  .command-block pre {
+    background-color: var(--color-canvas-default, #0d1117);
+  }
+  
+  .command-description {
+    background-color: var(--color-accent-subtle, #0969da1a);
+    border-color: var(--color-border-default, #30363d);
+  }
+  
+  .copy-btn {
+    border-color: var(--color-border-default, #30363d);
+    color: var(--color-fg-default, #f0f6fc);
+  }
+  
+  .copy-btn:hover {
+    background-color: var(--color-canvas-subtle, #21262d);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .code-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .copy-btn {
+    align-self: flex-end;
+  }
+  
+  .command-block pre {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Animation for smooth expand/collapse */
+.expandable-command .command-content {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

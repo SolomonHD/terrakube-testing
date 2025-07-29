@@ -1,0 +1,80 @@
+<script>
+function copyCommand(elementId) {
+  const codeElement = document.getElementById(elementId);
+  const text = codeElement.textContent || codeElement.innerText;
+  
+  // Use the modern Clipboard API if available
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => {
+      showCopyFeedback(elementId);
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+      fallbackCopyTextToClipboard(text, elementId);
+    });
+  } else {
+    // Fallback for older browsers
+    fallbackCopyTextToClipboard(text, elementId);
+  }
+}
+
+function fallbackCopyTextToClipboard(text, elementId) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  
+  // Avoid scrolling to bottom
+  textArea.style.top = "0";
+  textArea.style.left = "0";
+  textArea.style.position = "fixed";
+  
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) {
+      showCopyFeedback(elementId);
+    }
+  } catch (err) {
+    console.error('Fallback: Oops, unable to copy', err);
+  }
+  
+  document.body.removeChild(textArea);
+}
+
+function showCopyFeedback(elementId) {
+  const button = document.querySelector(`button[onclick="copyCommand('${elementId}')"]`);
+  const originalContent = button.innerHTML;
+  
+  button.innerHTML = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="20,6 9,17 4,12"></polyline>
+    </svg>
+    Copied!
+  `;
+  button.classList.add('copied');
+  
+  setTimeout(() => {
+    button.innerHTML = originalContent;
+    button.classList.remove('copied');
+  }, 2000);
+}
+
+// Add expand/collapse functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const expandableCommands = document.querySelectorAll('.expandable-command');
+  
+  expandableCommands.forEach(function(command) {
+    const summary = command.querySelector('summary');
+    const icon = summary.querySelector('.expand-icon');
+    
+    command.addEventListener('toggle', function() {
+      if (command.open) {
+        icon.style.transform = 'rotate(90deg)';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    });
+  });
+});
+</script>

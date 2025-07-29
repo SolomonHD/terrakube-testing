@@ -1,8 +1,15 @@
 # Site settings
-title: "My GHES Jekyll Test Site"
-description: "Testing Jekyll deployment on GitHub Enterprise Server"
+title: "DevOps Command Hub"
+description: "Your comprehensive guide to DevOps tools, commands, and best practices"
+author: "DevOps Team"
+email: "devops@example.com"
   #baseurl: "/your-repo-name"  # Replace with your actual repo name
   #url: "https://your-ghes-instance.com"  # Replace with your GHES URL
+
+# Theme
+theme: minima
+minima:
+  skin: dark
 
 # Build settings
 markdown: kramdown
@@ -11,11 +18,29 @@ kramdown:
   footnote_backlink: "&#8617;"
   input: GFM
   syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
 
 # Plugins
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  commands:
+    output: true
+    permalink: /:collection/:name/
+
+# Navigation
+header_pages:
+  - commands.md
+  - about.md
+
+# Social links
+github_username: your-github
+twitter_username: your-twitter
 
 # Exclude from build
 exclude:

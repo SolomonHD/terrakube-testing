@@ -1,0 +1,42 @@
+{% assign id = include.id | default: "cmd" %}
+{% assign title = include.title | default: "Command" %}
+{% assign expandable = include.expandable | default: false %}
+
+<div class="command-block" id="{{ id }}">
+  {% if expandable %}
+  <details class="expandable-command">
+    <summary class="command-summary">
+      <span class="command-title">{{ title }}</span>
+      <span class="expand-icon">▶</span>
+    </summary>
+    <div class="command-content">
+  {% else %}
+  <div class="command-header">
+    <span class="command-title">{{ title }}</span>
+  </div>
+  <div class="command-content">
+  {% endif %}
+    
+    <div class="code-container">
+      <div class="code-header">
+        <span class="code-lang">bash</span>
+        <button class="copy-btn" onclick="copyCommand('{{ id }}-code')" title="Copy to clipboard">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Copy
+        </button>
+      </div>
+      <pre class="highlight"><code id="{{ id }}-code" class="language-bash">{{ include.command | strip }}</code></pre>
+    </div>
+    
+    {% if include.description %}
+    <div class="command-description">
+      {{ include.description | markdownify }}
+    </div>
+    {% endif %}
+    
+  </div>
+  {% if expandable %}</details>{% else %}</div>{% endif %}
+</div>
