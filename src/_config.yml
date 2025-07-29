@@ -1,0 +1,25 @@
+# Site settings
+title: "My GHES Jekyll Test Site"
+description: "Testing Jekyll deployment on GitHub Enterprise Server"
+baseurl: "/your-repo-name"  # Replace with your actual repo name
+url: "https://your-ghes-instance.com"  # Replace with your GHES URL
+
+# Build settings
+markdown: kramdown
+kramdown:
+  footnote_nr: 1
+  footnote_backlink: "&#8617;"
+  input: GFM
+  syntax_highlighter: rouge
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
